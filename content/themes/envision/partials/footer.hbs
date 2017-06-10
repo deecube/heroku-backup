@@ -1,0 +1,37 @@
+{{! Footer partial template}}
+<footer id="footer-wsong">
+	<section id="widgets-area-rc" class="widgets-area-rc">
+		<div data-reactroot="" class="widget-area-rc">
+
+		<div class="widget featured-posts-widget">
+		<h4>Featured Posts</h4>
+
+    			{{#get "posts" limit="3" as |articles|}}
+ 
+        			{{#foreach articles}}
+          				<article>
+						<h5><a href="{{url}}">{{title}}</a></h5>
+						<p><!-- react-text: 36 -->{{excerpt words="38"}}...<!-- /react-text --><!-- react-text: 37 --> - <!-- /react-text --><time>8 months ago</time></p>
+						</article>
+        			{{/foreach}}
+        			</aside>
+    			{{/get}}
+		</div>
+
+		</div>
+	</section>
+
+	<section id="bottom-footer">
+		<ul id="social-links-footer-wsong">
+			{{#if @blog.twitter}}
+				<li><a href="{{twitter_url}}" class="twitter fa fa-twitter"></a></li>
+			{{/if}}
+			{{#if @blog.facebook}}
+				<li><a href="{{facebook_url}}" class="facebook fa fa-facebook"></a></li>
+			{{/if}}
+		</ul>
+		<div>
+			<p id="bottom-copyright">&copy; {{date format="YYYY"}}, Debdeep Dey. Powered by <a href="//ghost.org">Ghost</a>.</p>
+		</div>
+	</section>
+</footer>
