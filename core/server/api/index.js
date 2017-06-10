@@ -25,6 +25,7 @@ var _              = require('lodash'),
     uploads        = require('./upload'),
     exporter       = require('../data/export'),
     slack          = require('./slack'),
+    readThemes     = require('../utils/read-themes'),
 
     http,
     addHeaders,
@@ -40,7 +41,15 @@ var _              = require('lodash'),
  * @return {Promise(Settings)} Resolves to Settings Collection
  */
 init = function init() {
-    return settings.updateSettingsCache();
+    return settings.read({context: {internal: true}, key: 'activeTheme'})
+        .then(function initActiveTheme(response) {
+            var activeTheme = response.settings[0].value;
+            return readThemes.active(config.paths.themePath, activeTheme);
+        })
+        .then(function (result) {
+            config.set({paths: {availableThemes: result}});
+            return settings.updateSettingsCache();
+        });
 };
 
 function isActiveThemeOverride(method, endpoint, result) {
@@ -73,8 +82,9 @@ cacheInvalidationHeader = function cacheInvalidationHeader(req, result) {
 
     if (isActiveThemeOverride(method, endpoint, result)) {
         // Special case for if we're overwriting an active theme
-        // @TODO: remove this crazy DIRTY HORRIBLE HACK
+        // @TODO: remove these crazy DIRTY HORRIBLE HACKSSS
         req.app.set('activeTheme', null);
+        config.assetHash = null;
         return INVALIDATE_ALL;
     } else if (['POST', 'PUT', 'DELETE'].indexOf(method) > -1) {
         if (endpoint === 'schedules' && subdir === 'posts') {
