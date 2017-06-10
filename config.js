@@ -11,20 +11,25 @@ config = {
     // When running Ghost in the wild, use the production environment.
     // Configure your URL and mail settings here
     production: {
-        url: 'http://iamroot.tech',
+        url: 'http://imroot.herokuapp.com',
+        filestorage: false,
         mail: {},
-        database: {
-            client: 'sqlite3',
-            connection: {
-                filename: path.join(__dirname, '/content/data/ghost.db')
-            },
-            debug: false
-        },
+		database: {  
+		  client: 'postgres',
+		  connection: {
+		    host: process.env.POSTGRES_HOST,
+		    user: process.env.POSTGRES_USER,
+		    password: process.env.POSTGRES_PASSWORD,
+		    database: process.env.POSTGRES_DATABASE,
+		    port: '5432'
+		  },
+		  debug: false
+		},
 
-        server: {
-            host: '127.0.0.1',
-            port: '2368'
-        }
+		server: {  
+		  host: '0.0.0.0',
+		  port: process.env.PORT
+		}
     },
 
     // ### Development **(default)**
