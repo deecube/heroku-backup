@@ -19,8 +19,8 @@ config = {
 			options: {
 			    service: 'Mailgun',
 			    auth: {
-			      user: process.env.MAILGUNB_USERNAME,
-			      pass: process.env.MAILGUNB_PASSWORD
+			      user: 'postmaster@sandboxb390e2972a294c4e9a8e21d1eac80d00.mailgun.org',
+			      pass: '634f357d03297aa49316bf29c19a0e7c'
     }
   }
         },
