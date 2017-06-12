@@ -466,14 +466,17 @@ button:focus {
   font-weight: 600;
 }
 .post-meta-wsong .tags a {
-  border: 1px solid #373737;
+  border: 1px solid #FF3333;
   border-radius: 3px;
-  color: #373737;
+  color: #FFFFFF;
+  background-color: #FF3333;
   display: inline-block;
   margin: 0 0 10px 10px;
   padding: 0 12px;
 }
 .post-meta-wsong .tags a:hover {
+  border: 1px solid #373737;
+  border-radius: 3px;
   background-color: #373737;
   color: #fff;
 }
@@ -751,9 +754,10 @@ nav.pagination .older-posts {
   margin: 18px 0 26px 0;
 }
 #in-post-meta a {
-  border: 1px solid #fff;
+  border: 1px solid #FF3333;
   border-radius: 3px;
   color: #fff;
+  background-color: #FF3333;
   display: inline-block;
   font-family: "Open Sans", sans-serif;
   font-size: 0.86em;
@@ -762,6 +766,8 @@ nav.pagination .older-posts {
   text-decoration: none;
 }
 #in-post-meta a:hover {
+  border: 1px solid #fff;
+  border-radius: 3px;
   background-color: #fff;
   color: #373737;
 }
@@ -877,7 +883,7 @@ nav.pagination .older-posts {
   margin-top: 0;
 }
 #in-post-footer .jump-to-posts article a {
-  background-color: #151515;
+  background-color: #FF3333;
   border-radius: 3px;
   color: #fff;
   display: inline-block;
